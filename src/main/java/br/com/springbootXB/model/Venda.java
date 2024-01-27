@@ -1,19 +1,25 @@
+package br.com.springbootXB.model;
+
 import java.time.LocalDate;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
-import java.util.List;
 
 @Data
 @AllArgsConstructor
-@NoArgsConstructor 
+@NoArgsConstructor
+@Entity 
 public class Venda {
-    
+
+        @Id
         private Long id;
         private LocalDate dataVenda;
-        private BigDecimal valor;
+        private float valor;
         private Long vendedorId;
         private String vendedorNome;
+        @OneToOne
+        private VendedorSales VendedorSales;
     }
