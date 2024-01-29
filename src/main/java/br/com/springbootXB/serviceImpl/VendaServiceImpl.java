@@ -2,6 +2,7 @@ package br.com.springbootXB.serviceImpl;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import br.com.springbootXB.model.Venda;
@@ -20,17 +21,26 @@ public class VendaServiceImpl implements VendaService {
     private VendedorSalesRepository vendedorSalesRepository;
 
     @Override
-    public Venda gerarVenda(String vendedorNome, float valor) {
+    public Venda gerarVenda(Long vendedorId, float valor) {
+        VendedorSales vendedorSales = vendedorSalesRepository.findById(vendedorId).orElseThrow(()->new RuntimeException("Erro"));
         Venda venda = new Venda();
-        venda.setVendedorNome(vendedorNome);
         venda.setValor(valor);
+        venda.setDataVenda(LocalDate.now());
+        venda.setVendedorSales(vendedorSales);
+        vendedorSales.setTotalVendas(vendedorSales.getTotalVendas() + 1);
+        vendedorSales.setMediaVendasDiaria(gerarMedia());
+        vendedorSalesRepository.save(vendedorSales);
         return vendaRepository.save(venda);
     }
 
     @Override
-    public List<VendedorSales> listarVendedores(LocalDate dataInicial, LocalDate dataFinal) {
+    public List<Venda> listarVenda(LocalDate dataInicial, LocalDate dataFinal) {
+        return vendaRepository.findAll();
 
-        return vendedorSalesRepository.findAll();
+    }
+
+    private Float gerarMedia() {
+        return null;
 
     }
 }

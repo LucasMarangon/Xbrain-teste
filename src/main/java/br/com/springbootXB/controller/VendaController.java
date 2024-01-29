@@ -5,6 +5,7 @@ import br.com.springbootXB.model.Venda;
 import br.com.springbootXB.service.VendaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.PostMapping;
 
 
@@ -17,9 +18,8 @@ public class VendaController {
     private VendaService vendaService;
 
     @PostMapping
-    public Venda gerarVenda(String vendedorNome, float valor) {
-        return vendaService.gerarVenda(vendedorNome, valor);
-         
+    public Venda gerarVenda(@RequestParam Long vendedorId, @RequestParam Float valor) {
+        return vendaService.gerarVenda(vendedorId, valor);
     }
 
 
