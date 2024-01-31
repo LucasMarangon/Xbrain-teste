@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import br.com.springbootXB.model.Venda;
 
-// O código vai encontrar vai achar todos os objetos de "Venda" dentro da data inicial e data final informadas
+// Repositório com a função para pesquisar vendas entre datas específicas
  
 @Repository
 public interface VendaRepository extends JpaRepository<Venda, Long>{

@@ -5,10 +5,12 @@ import org.springframework.stereotype.Repository;
 import br.com.springbootXB.model.VendedorSales;
 import java.util.Optional;
 
+// Repositório para filtrar utilizando o ID do vendedor
+
 
 @Repository
 public interface VendedorSalesRepository extends JpaRepository<VendedorSales, Long>{
-    Optional<VendedorSales> findById(Long id); 
+    Optional<VendedorSales> findById(Long id);
 
 }
 
